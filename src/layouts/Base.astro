@@ -16,7 +16,7 @@ const { title } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} type="image/svg+xml" />
     <title>{title}</title>
     <meta name="description" content="TFF Work Style Lab — a clean, one-time Team Friday Fun work-style quiz." />
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />

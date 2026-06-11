@@ -1,13 +1,15 @@
 ---
+const base = import.meta.env.BASE_URL;
+const hrefFor = (path: string) => new URL(path.replace(/^\//, ''), `https://example.com${base}`).pathname;
 const links = [
-  { href: '/', label: 'Lab' },
-  { href: '/quiz/', label: 'Quiz' },
-  { href: '/admin/', label: 'Admin' },
+  { href: hrefFor('/'), label: 'Lab' },
+  { href: hrefFor('/quiz/'), label: 'Quiz' },
+  { href: hrefFor('/admin/'), label: 'Admin' },
 ];
 ---
 <nav class="site-nav">
   <div class="site-nav-inner">
-    <a href="/" class="brand" aria-label="TFF Work Style Lab home">
+    <a href={hrefFor('/')} class="brand" aria-label="TFF Work Style Lab home">
       <span class="brand-mark">TFF</span>
       <span class="brand-text">
         <strong>TFF Work Style Lab</strong>
