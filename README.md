@@ -4,7 +4,7 @@ Static Astro front end for the Team Friday Fun work-style quiz.
 
 Public Pages URL target:
 
-`https://jbsetian.github.io/team-friday-fun/`
+`https://jsetian.github.io/team-friday-fun/`
 
 ## Backend note
 
