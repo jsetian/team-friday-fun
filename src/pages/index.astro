@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import { LANDING_TITLE, QUIZ_SUBTITLE } from '../lib/tff-data';
+---
+<Base title={LANDING_TITLE}>
+  <section class="hero section-panel confirmation">
+    <p class="eyebrow">Team Friday Fun</p>
+    <h1>TFF Work Style Lab</h1>
+    <p class="lead">Find your team work style.</p>
+    <p class="lead" style="font-size:1.08rem; margin-top:0.75rem;">A short, playful quiz about how you think, collaborate, and contribute.</p>
+    <p class="quiz-subtitle-pop">{QUIZ_SUBTITLE}</p>
+    <p class="subtle">This is a light Team Friday Fun activity. It is not a formal personality test, HR evaluation, clinical tool, or performance review.</p>
+    <div class="btn-row">
+      <a class="btn primary" href="/quiz/">Start Quiz</a>
+    </div>
+    <p class="subtle">Takes about 5 minutes. Answer quickly. There are no wrong answers.</p>
+  </section>
+</Base>

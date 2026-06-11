@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="You're in | TFF Work Style Lab">
+  <section class="hero confirmation">
+    <p class="eyebrow">Submission complete</p>
+    <h1>You’re in.</h1>
+    <p>Your work-style quiz has been submitted. Your result is ready below.</p>
+    <p class="subtle">One-word result: <strong data-primary-style>loading…</strong></p>
+    <div class="trait-card full-bleed" data-trait-shell hidden>
+      <p class="kicker">Your traits</p>
+      <div data-trait-summary></div>
+    </div>
+    <div class="portrait-card full-bleed" data-portrait-shell hidden>
+      <p class="kicker">Work-style character sketch</p>
+      <p data-portrait-status>Generating your work-style character sketch…</p>
+      <div class="portrait-frame">
+        <img data-portrait-image hidden alt="Generated work-style character sketch" />
+      </div>
+    </div>
+    <div class="btn-row">
+      <a class="btn primary" href="/">Back to Lab</a>
+    </div>
+    <p class="fine-print">This is also a small example of where marketing is going: more interactive, more personalized, and more useful digital experiences.</p>
+  </section>
+
+  <script>import '../../scripts/result.ts';</script>
+</Base>

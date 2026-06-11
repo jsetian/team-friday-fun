@@ -1,0 +1,28 @@
+---
+import Nav from '../components/Nav.astro';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="stylesheet" href="/assets/styles.css?v=8" />
+  <link rel="stylesheet" href="/assets/global.css">
+  <title>{title}</title>
+  <meta name="description" content="Live PiBot status dashboard — sessions, tokens, agents, and skills on the Raspberry Pi OpenClaw instance." />
+</head>
+<body>
+  <Nav />
+  <slot />
+</body>
+</html>

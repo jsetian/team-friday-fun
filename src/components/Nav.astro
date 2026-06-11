@@ -1,0 +1,35 @@
+---
+const links = [
+  { href: '/', label: 'Lab' },
+  { href: '/quiz/', label: 'Quiz' },
+  { href: '/admin/', label: 'Admin' },
+];
+---
+<nav class="site-nav">
+  <div class="site-nav-inner">
+    <a href="/" class="brand" aria-label="TFF Work Style Lab home">
+      <span class="brand-mark">TFF</span>
+      <span class="brand-text">
+        <strong>TFF Work Style Lab</strong>
+        <span>Team Friday Fun</span>
+      </span>
+    </a>
+    <div class="nav-links" role="navigation" aria-label="Primary">
+      {links.map((link) => (
+        <a class="nav-link" href={link.href} data-nav-link>{link.label}</a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const path = window.location.pathname.replace(/index\.html$/, '').replace(/\/$/, '') || '/';
+    document.querySelectorAll('[data-nav-link]').forEach((a) => {
+      const href = (a.getAttribute('href') || '').replace(/\/$/, '') || '/';
+      const active = path === href || (href !== '/' && path.startsWith(href));
+      a.classList.toggle('active', active);
+      a.setAttribute('aria-current', active ? 'page' : 'false');
+    });
+  });
+</script>

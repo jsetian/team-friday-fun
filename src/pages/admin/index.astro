@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+<Base title="Admin | TFF Work Style Lab">
+  <section class="hero admin-hero lock-screen" data-lock-screen>
+    <p class="eyebrow">Admin only</p>
+    <h1>Team report builder</h1>
+    <p>Enter the admin username and password to view submissions and export the data.</p>
+    <form class="lock-card" data-lock-form>
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" autocomplete="username" />
+      <label for="password" style="margin-top:0.85rem;">Password</label>
+      <input id="password" name="password" type="password" placeholder="Password" autocomplete="current-password" />
+      <div class="btn-row" style="margin-top:0.85rem;">
+        <button class="btn primary" type="submit">Unlock</button>
+      </div>
+      <p class="lock-error" data-lock-error hidden></p>
+    </form>
+  </section>
+
+  <section class="admin-wrap" data-admin-shell hidden>
+    <section class="hero admin-hero">
+      <div class="admin-toolbar">
+        <div>
+          <p class="eyebrow">Admin dashboard</p>
+          <h1>Submission manager</h1>
+          <p class="subtle">View entries, inspect details, and export everything for the slide deck.</p>
+        </div>
+        <div class="btn-row">
+          <button class="btn secondary" type="button" data-export-json>Export JSON</button>
+          <button class="btn secondary" type="button" data-export-csv>Export CSV</button>
+          <button class="btn secondary" type="button" data-lock-admin>Lock</button>
+        </div>
+      </div>
+      <div class="metric-grid" data-admin-stats></div>
+    </section>
+
+    <section class="admin-grid">
+      <div class="panel section-panel">
+        <div class="list-header">
+          <div>
+            <p class="kicker">Submitted quizzes</p>
+            <h2>Entries</h2>
+          </div>
+        </div>
+        <div class="admin-list" data-submission-list></div>
+      </div>
+
+      <div class="panel section-panel" data-submission-detail>
+        <p class="mini-note">Select a submission to see details.</p>
+      </div>
+    </section>
+  </section>
+
+  <script>import '../../scripts/admin.ts';</script>
+</Base>

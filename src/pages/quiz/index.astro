@@ -1,0 +1,132 @@
+---
+import Base from '../../layouts/Base.astro';
+import { QUIZ_SUBTITLE, QUIZ_TITLE, likertLabels, playfulQuestions, predictedStyleOptions, traitQuestions } from '../../lib/tff-data';
+---
+<Base title={QUIZ_TITLE}>
+  <section class="hero quiz-header">
+    <p class="eyebrow">Team Friday Fun</p>
+    <h1>{QUIZ_TITLE}</h1>
+    <p class="quiz-subtitle-pop">{QUIZ_SUBTITLE}</p>
+    <p class="subtle">A short, playful quiz about how you like to work, collaborate, and contribute.</p>
+    <div class="privacy-note">
+      <strong>Quick note:</strong> this is a custom Team Friday Fun activity, not a formal personality test or workplace assessment. Your answers are used to create a playful work-style result and generated character sketch for the TFF guessing game.
+    </div>
+    <div class="progress-line">
+      <div class="progress-bar" aria-hidden="true"><span data-step-progress-fill></span></div>
+      <span data-step-progress-text>Step 1 of {traitQuestions.length + playfulQuestions.length + 2}</span>
+    </div>
+  </section>
+
+  <form class="form section quiz-shell" data-quiz-form novalidate>
+    <section class="section-panel surface quiz-step is-active" data-quiz-step data-step-name="About you">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Step 1</p>
+          <h2>Tell us who’s taking it.</h2>
+        </div>
+        <p class="mini-note">Required</p>
+      </div>
+      <div class="field">
+        <label for="name">Name or nickname</label>
+        <input id="name" name="name" type="text" required placeholder="Use the name you want shown during the activity" />
+      </div>
+      <fieldset class="playful-card">
+        <legend>For the generated character sketch, what visual direction should it lean toward?</legend>
+        <div class="choice-grid playful">
+          {['Feminine', 'Masculine', 'Androgynous', 'Surprise me'].map((option) => (
+            <label class="choice" data-choice>
+              <input type="radio" name="characterPresentation" value={option} required />
+              <span>{option}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+    </section>
+
+    <section class="section-panel surface quiz-step" data-quiz-step data-step-name="Prediction">
+      <div class="section-head">
+        <div>
+          <p class="kicker">Step 2</p>
+          <h2>Before taking the quiz, which work style do you think you are?</h2>
+        </div>
+        <p class="mini-note">Pick one</p>
+      </div>
+      <fieldset class="playful-card">
+        <legend>Your best guess</legend>
+        <div class="choice-grid playful">
+          {predictedStyleOptions.map((option) => (
+            <label class="choice" data-choice>
+              <input type="radio" name="predictedStyle" value={option} required />
+              <span>{option}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+    </section>
+
+    {traitQuestions.map((question, index) => (
+      <section class="section-panel surface quiz-step" data-quiz-step data-step-name={`Question ${index + 3}`}>
+        <div class="section-head">
+          <div>
+            <p class="kicker">Step {index + 3}</p>
+            <h2>Scored question</h2>
+          </div>
+          <p class="mini-note">1 = Strongly disagree · 5 = Strongly agree</p>
+        </div>
+        <fieldset class="question-card">
+          <legend>{question.text}</legend>
+          <div class="choice-grid likert">
+            {likertLabels.map((label, valueIndex) => (
+              <label class="choice" data-choice>
+                <input type="radio" name={question.id} value={valueIndex + 1} required />
+                <span>{label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+      </section>
+    ))}
+
+    {playfulQuestions.map((question, index) => (
+      <section class="section-panel surface quiz-step playful-step" data-quiz-step data-step-name={`Theme ${index + 1}`}>
+        <div class="section-head">
+          <div>
+            <p class="kicker">Playful deck prompt · Step {traitQuestions.length + index + 3}</p>
+            <h2>Presentation flavor question</h2>
+          </div>
+          <p class="mini-note">Used later for the export and deck</p>
+        </div>
+        <fieldset class="playful-card">
+          <legend>{question.text}</legend>
+          <div class="choice-grid playful">
+            {question.options.map((option) => (
+              <label class="choice" data-choice>
+                <input type="radio" name={question.id} value={option} required />
+                <span>{option}</span>
+              </label>
+            ))}
+            <label class="choice custom-choice" data-choice>
+              <input type="radio" name={question.id} value="__other__" required data-other-radio={question.id} />
+              <span>Enter my own answer</span>
+            </label>
+            <div class="custom-answer" data-other-wrap={question.id} hidden>
+              <label for={`${question.id}-other`}>Your answer</label>
+              <input id={`${question.id}-other`} type="text" name={`${question.id}Other`} placeholder="Type your own answer…" data-other-input={question.id} />
+            </div>
+          </div>
+        </fieldset>
+      </section>
+    ))}
+
+    <section class="section-panel surface quiz-footer">
+      <p class="notice">This is also a small example of where marketing is going: more interactive, more personalized, and more useful digital experiences.</p>
+      <div class="form-footer">
+        <button class="btn secondary" type="button" data-prev-step>Back</button>
+        <button class="btn primary" type="button" data-next-step>Start quiz</button>
+        <button class="btn primary" type="submit" data-submit-step hidden>Submit Quiz</button>
+      </div>
+    </section>
+  </form>
+
+  <script>import '../../scripts/quiz.ts';</script>
+</Base>
