@@ -2,21 +2,13 @@
 
 Static Astro front end for the Team Friday Fun work-style quiz.
 
-## GitHub Pages mode
-
-This repo can be published as a GitHub Pages project site at:
+Public Pages URL target:
 
 `https://jbsetian.github.io/team-friday-fun/`
 
-Build with:
+## Backend note
 
-```bash
-PUBLIC_TFF_API_BASE=https://tff.jseds.com/api/tff GITHUB_PAGES=true npm run build
-```
-
-## Important backend note
-
-GitHub Pages is static hosting only. The following features require the separate TFF API backend:
+GitHub Pages is static hosting only. Full functionality still requires the private TFF API backend on the Pi for:
 
 - quiz submissions
 - result lookup by submission id
@@ -25,8 +17,10 @@ GitHub Pages is static hosting only. The following features require the separate
 - generated portrait/sketch requests
 - SQLite submission storage
 
-For now, the Pages build should point at the existing backend:
+Set the backend at build time with:
 
-`https://tff.jseds.com/api/tff`
+```bash
+PUBLIC_TFF_API_BASE=https://YOUR-BACKEND-HOST/api/tff GITHUB_PAGES=true npm run build
+```
 
-Do **not** commit SQLite databases, `.env` files, API keys, or real admin credentials.
+Do **not** commit SQLite databases, `.env` files, API keys, backend code, or real admin credentials.

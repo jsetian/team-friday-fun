@@ -1,4 +1,4 @@
-const DEFAULT_ASSET_BASE = 'https://r2.jseds.com';
+const DEFAULT_ASSET_BASE = '';
 
 export function assetUrl(path: string) {
   const base = (import.meta.env.PUBLIC_ASSET_BASE_URL || DEFAULT_ASSET_BASE).replace(/\/$/, '');
