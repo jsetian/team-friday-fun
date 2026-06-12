@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   output: 'static',
-  base: process.env.GITHUB_PAGES === 'true' ? '/team-friday-fun' : '/',
+  base: process.env.GITHUB_PAGES === 'true' ? '/team-friday-fun/' : '/',
   outDir: './dist',
   build: {
     format: 'directory',
