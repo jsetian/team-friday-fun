@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+
+# TFF Work Style Lab is private/internal and should not be indexed.
