@@ -144,7 +144,6 @@ function renderDetail(detailEl: HTMLElement, submission: Submission | undefined,
           <dt>Primary</dt><dd>${escapeHtml(submission.primaryStyle)}</dd>
           <dt>Secondary</dt><dd>${escapeHtml(submission.secondaryStyle || '—')}</dd>
           <dt>Predicted</dt><dd>${escapeHtml(submission.predictedStyle)}</dd>
-          <dt>Sketch</dt><dd>${submission.portrait?.dataUrl ? 'Generated' : 'Not generated yet'}</dd>
         </dl>
       </div>
       <div class="detail-card">
@@ -175,55 +174,9 @@ function renderDetail(detailEl: HTMLElement, submission: Submission | undefined,
       <strong>Normalized style scores</strong>
       <div class="codebox">${escapeHtml(JSON.stringify(submission.styleScores, null, 2))}</div>
     </div>
-    ${submission.portrait?.dataUrl ? `
-      <div class="detail-card">
-        <strong>Generated work-style character sketch</strong>
-        <img class="admin-portrait" src="${submission.portrait.dataUrl}" alt="Generated work-style character sketch for ${escapeHtml(submission.name || 'submission')}" />
-      </div>
-    ` : ''}
-    <div class="detail-card">
-      <strong>Work-style image prompt</strong>
-      <p class="mini-note">This is generated automatically after a quiz is saved, from the saved answers/profile.</p>
-      <div class="codebox">${escapeHtml(submission.portraitPrompt || buildPortraitPrompt(submission))}</div>
-    </div>
   `;
 
   detailEl.querySelector<HTMLButtonElement>('[data-delete-submission]')?.addEventListener('click', () => onDelete(submission));
-}
-
-function buildPortraitPrompt(submission: Submission) {
-  const playful = submission.playfulAnswers;
-  return `Create a playful, warm, polished editorial character sketch that imagines what this person's work-style alter ego might look like for a team presentation guessing game.
-
-IMPORTANT RULES:
-- No text, no letters, no numbers, no labels, no logos, no captions, no signs, no badges.
-- Do not include the person's name.
-- Do not make it look like a real employee photo or formal portrait; make it a symbolic character generated from scratch.
-- Make it friendly and workplace-appropriate, clever rather than mocking.
-- Use a clean modern presentation style with subtle humor and strong visual clues.
-
-Work-style profile:
-- Primary style: ${submission.primaryStyle}
-- Secondary style: ${submission.secondaryStyle || 'none'}
-- Person predicted they might be: ${submission.predictedStyle}
-
-Trait scores, 0 to 100:
-- Openness: ${submission.traitScores.openness}
-- Conscientiousness: ${submission.traitScores.conscientiousness}
-- Extraversion: ${submission.traitScores.extraversion}
-- Agreeableness: ${submission.traitScores.agreeableness}
-- Steadiness: ${submission.traitScores.steadiness}
-
-Playful clues from their answers:
-- Vehicle metaphor: ${playful.vehicle}
-- Workday soundtrack: ${playful.soundtrack}
-- Moment where they feel useful: ${playful.usefulMoment}
-- Work-style superpower: ${playful.superpower}
-- Character presentation direction: ${playful.characterPresentation || 'Surprise me'}
-- What they want AI to help with: ${playful.aiHelp}
-
-Image concept:
-A single expressive character in a lightly surreal office/creative-work environment, with clothing, props, posture, energy, and composition hinting at the profile and playful clues. It should feel like a clever sketch of what this person's work personality might look like, not a literal portrait. The team should be able to guess both who it is and what style they scored as from the visual clues alone. No words anywhere in the image.`;
 }
 
 async function renderAdmin() {
@@ -252,10 +205,8 @@ async function renderAdmin() {
   let submissions: Submission[] = [];
 
   const renderStats = () => {
-    const generatedImages = submissions.filter((submission) => submission.portrait?.dataUrl).length;
     statsEl.innerHTML = `
       <article class="metric-card"><strong>${submissions.length}</strong><span>submissions saved</span></article>
-      <article class="metric-card"><strong>${generatedImages}</strong><span>images generated</span></article>
       <article class="metric-card"><strong>${submissions.length ? 'Ready' : 'Waiting'}</strong><span>export status</span></article>
       <article class="metric-card"><strong>SQLite</strong><span>simple durable storage</span></article>
     `;

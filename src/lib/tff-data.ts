@@ -231,7 +231,6 @@ export function buildSubmission(input: {
     secondaryStyle: profile.secondaryStyle,
     rawAnswers: input.rawAnswers,
     playfulAnswers: {
-      characterPresentation: input.rawAnswers.characterPresentation || 'Surprise me',
       vehicle: input.rawAnswers.vehicle || '',
       soundtrack: input.rawAnswers.soundtrack || '',
       usefulMoment: input.rawAnswers.usefulMoment || '',

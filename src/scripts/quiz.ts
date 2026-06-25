@@ -109,7 +109,7 @@ function initQuizForm() {
     }
 
     const data = new FormData(form);
-    const playfulKeys = ['characterPresentation', 'vehicle', 'soundtrack', 'usefulMoment', 'superpower', 'aiHelp'];
+    const playfulKeys = ['vehicle', 'soundtrack', 'usefulMoment', 'superpower', 'aiHelp'];
     const rawAnswers: Record<string, string> = {};
     for (const [key, value] of data.entries()) {
       if (!key.startsWith('q') && !['predictedStyle', ...playfulKeys].includes(key)) continue;

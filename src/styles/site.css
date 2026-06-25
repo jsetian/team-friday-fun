@@ -498,13 +498,6 @@ input.btn {
 }
 
 .trait-card,
-.portrait-card {
-  margin-top: 1.25rem;
-  padding: 1rem;
-  border-radius: var(--radius-md);
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(47, 94, 109, 0.16);
-}
 
 .trait-grid {
   display: grid;
@@ -522,28 +515,8 @@ input.btn {
 .trait-row strong { display: block; }
 .trait-row p { margin-top: 0.2rem; color: var(--muted); }
 
-.portrait-frame {
-  margin-top: 1rem;
-  border-radius: 18px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  background: #eef2f5;
-}
 
-.portrait-frame img,
-.admin-portrait {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  margin-top: 0;
-}
 
-.portrait-frame img {
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  object-position: center;
-}
 
 .loading-dot {
   display: inline-block;

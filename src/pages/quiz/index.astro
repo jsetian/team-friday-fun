@@ -9,7 +9,7 @@ import { QUIZ_SUBTITLE, QUIZ_TITLE, likertLabels, playfulQuestions, predictedSty
     <p class="quiz-subtitle-pop">{QUIZ_SUBTITLE}</p>
     <p class="subtle">A short, playful quiz about how you like to work, collaborate, and contribute.</p>
     <div class="privacy-note">
-      <strong>Quick note:</strong> this is a custom Team Friday Fun activity, not a formal personality test or workplace assessment. Your answers are used to create a playful work-style result and generated character sketch for the TFF guessing game.
+      <strong>Quick note:</strong> this is a custom Team Friday Fun activity, not a formal personality test or workplace assessment. Your answers are used to create a playful work-style result for the TFF guessing game.
     </div>
     <div class="progress-line">
       <div class="progress-bar" aria-hidden="true"><span data-step-progress-fill></span></div>
@@ -30,17 +30,6 @@ import { QUIZ_SUBTITLE, QUIZ_TITLE, likertLabels, playfulQuestions, predictedSty
         <label for="name">Name or nickname</label>
         <input id="name" name="name" type="text" required placeholder="Use the name you want shown during the activity" />
       </div>
-      <fieldset class="playful-card">
-        <legend>For the generated character sketch, what visual direction should it lean toward?</legend>
-        <div class="choice-grid playful">
-          {['Feminine', 'Masculine', 'Androgynous', 'Surprise me'].map((option) => (
-            <label class="choice" data-choice>
-              <input type="radio" name="characterPresentation" value={option} required />
-              <span>{option}</span>
-            </label>
-          ))}
-        </div>
-      </fieldset>
     </section>
 
     <section class="section-panel surface quiz-step" data-quiz-step data-step-name="Prediction">
