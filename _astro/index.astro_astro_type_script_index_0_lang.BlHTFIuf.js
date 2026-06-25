@@ -1,9 +1,0 @@
-import{a as u,t as y}from"./tff-api.CThBq9JB.js";async function g(){const d=document.querySelector("[data-primary-style]"),e=document.querySelector("[data-trait-shell]"),l=document.querySelector("[data-trait-summary]"),r=document.querySelector("[data-portrait-shell]"),t=document.querySelector("[data-portrait-status]"),s=document.querySelector("[data-portrait-image]");if(!d||!e||!l||!r||!t||!s)return;const i=new URLSearchParams(window.location.search).get("id");if(!i){e.hidden=!0,r.hidden=!0;return}try{const o=(await(await fetch(u(`/submissions/${encodeURIComponent(i)}`))).json().catch(()=>({}))).submission;if(o){d.textContent=o.primaryStyle||"—",e.hidden=!1;const h=Object.entries(o.traitScores||{}).map(([m,p])=>{const c=y[m];return c?`
-            <div class="trait-row">
-              <strong>${c.title}: ${p}</strong>
-              <p>${c.summary}</p>
-            </div>
-          `:""}).join("");l.innerHTML=`
-        <p class="mini-note">This is the custom result profile based on your answers.</p>
-        <div class="trait-grid">${h}</div>
-      `}}catch{e.hidden=!0}r.hidden=!1,t.innerHTML='<span class="loading-dot" aria-hidden="true"></span> Generating your work-style character sketch… this usually takes 10–45 seconds.';try{const n=await fetch(u(`/submissions/${encodeURIComponent(i)}/portrait`),{method:"POST"}),a=await n.json().catch(()=>({}));if(!n.ok||!a.ok){t.textContent="Your quiz is saved. Character sketch generation is not available yet, so we’ll generate it later for the presentation.";return}if(a.portrait?.dataUrl){s.src=a.portrait.dataUrl,s.hidden=!1,t.textContent="Your work-style character sketch is ready. No spoilers — this may show up in the team guessing game.";return}t.textContent="Your quiz is saved. Character sketch generation will finish later."}catch{t.textContent="Your quiz is saved. Character sketch generation hit a temporary issue, so we’ll generate it later."}}g();
