@@ -138,7 +138,10 @@ function initQuizForm() {
         method: 'POST',
         body: JSON.stringify(submission),
       });
-      window.location.href = `/result/?id=${encodeURIComponent(submission.id)}`;
+      const basePath = import.meta.env.BASE_URL.endsWith('/')
+        ? import.meta.env.BASE_URL
+        : `${import.meta.env.BASE_URL}/`;
+      window.location.href = `${basePath}result/?id=${encodeURIComponent(submission.id)}`;
     } catch (error) {
       alert(error instanceof Error ? error.message : 'Submission failed. Please try again.');
       if (submitButton) submitButton.disabled = false;
